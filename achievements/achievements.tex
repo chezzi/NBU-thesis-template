@@ -1,0 +1,11 @@
+\begin{achievements}
+
+\let\oldbibsection\bibsection
+\renewcommand{\bibsection}{}   % 临时去掉参考文献标题
+\begin{bibunit}[style/gbt7714-numerical]
+  \nocite{*}
+  \putbib[bib/refself]
+\end{bibunit}
+\let\bibsection\oldbibsection
+
+\end{achievements}

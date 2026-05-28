@@ -1,0 +1,25 @@
+```text id="jlwmjx"
+# LaTeX auxiliary files
+*.aux
+*.log
+*.toc
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+*.bcf
+*.run.xml
+*.blg
+*.bbl
+
+# Build directory
+output/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+```

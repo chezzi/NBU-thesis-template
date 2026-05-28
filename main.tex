@@ -1,0 +1,64 @@
+\documentclass[ebook]{style/nbuthesis}
+
+% 论文基本信息配置
+\newcommand{\doctype }{宁波大学硕士学位论文}
+\newcommand{\thesistitle }{中文论文题目}  
+\newcommand{\thesistitleEN }{English Thesis Title}  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% 导入首页
+\pagestyle{titlepage}
+\input{cover/cover_English_version.tex}
+
+% 前言部分
+\frontmatter
+
+% 导入承诺页
+\input{commitment/commitment.tex}
+\cleardoublepage
+\pagenumbering{Roman}
+\pagestyle{tablepage}
+\tableformatset
+
+% 导入中英文摘要
+\input{chapter/abstract/abstract.tex}
+
+% 导入目录页
+\tableofcontents
+\cleardoublepage
+
+\mainmatter
+\pagenumbering{arabic}
+\pagestyle{mainpage}
+
+
+\introduction
+
+
+\input{chapter/introduction/introduction.tex}
+
+
+
+\input{chapter/chapter01/chapter01.tex}
+
+
+
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliographystyle{style/gbt7714-numerical}
+\bibliography{bib/motified_gravity_and_inflation}
+
+\appendix
+\input{appendix/appendix01.tex}
+
+% 在学研究成果
+\input{achievements/achievements.tex}
+
+
+% 致谢
+\input{acknowledgement/acknowledgements.tex}
+
+
+
+\end{document}

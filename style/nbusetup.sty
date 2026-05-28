@@ -1,0 +1,302 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{style/nbusetup}[2024/06/01 v1.0 NBU Thesis Template]
+
+% -------------------------  常规工具  ------------------------- %
+\RequirePackage{etoolbox,xcolor}
+\RequirePackage{mathtools}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage[numbers,sort&compress]{natbib}
+\RequirePackage{bibunits}
+\RequirePackage{stackengine}
+
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
+\renewcommand{\bibfont}{\zihao{5}}
+
+\let\oldeqref\eqref
+\renewcommand{\eqref}[1]{式~\oldeqref{#1}}
+
+\AtBeginDocument{
+  \setlength{\abovedisplayskip}{15pt}
+  \setlength{\belowdisplayskip}{15pt}
+  \setlength{\abovedisplayshortskip}{15pt}
+  \setlength{\belowdisplayshortskip}{15pt}
+}
+
+\makeatletter
+\DeclareRobustCommand{\hbar}{%
+  \text{\stackinset{l}{0.2ex}{c}{0.3ex}{--}{$h$}}%
+}
+\makeatother
+
+% -------------------------  设置版式  ------------------------- %
+\RequirePackage{geometry}
+\RequirePackage{setspace}
+\geometry{
+    a4paper,
+    top=3cm, bottom=2.5cm, 
+    left=3cm, right=2cm,
+    headheight=15pt,
+    headsep=0.5cm, footskip=0.75cm
+}
+\setstretch{1.3}
+\setlength{\parindent}{2em}
+
+% -------------------------  设置字体  ------------------------- %
+
+\RequirePackage{newtxtext}
+\RequirePackage{newtxmath} 
+\newcommand{\fontpath}{./style/font/} 
+\setCJKmainfont[ Path = \fontpath, Extension = .TTF, BoldFont = SourceHanSerifCN-SemiBold.otf ]{FZSSK} 
+\setCJKsansfont[ Path = \fontpath, Extension = .TTF, BoldFont = SourceHanSansCN-Medium.otf ]{FZHTK}
+
+% -----------------------  设置页眉页脚  ----------------------- %
+\RequirePackage{fancyhdr}
+
+\newcommand{\thesishead}{\ifodd\value{page}\zihao{5}\doctype\else\zihao{5}\thesistitle\fi}
+
+\fancypagestyle{titlepage}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\fancypagestyle{tablepage}{
+    \fancyhf{}
+    \fancyhead[C]{\thesishead}
+    \renewcommand{\headrulewidth}{1pt}
+}
+
+\fancypagestyle{mainpage}{
+    \fancyhf{}
+    \fancyhead[C]{\thesishead}
+    \renewcommand{\headrulewidth}{1pt}
+    \fancyfoot[C]{\thepage}
+}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyhead[C]{\thesishead}
+    \renewcommand{\headrulewidth}{1pt}
+    \fancyfoot[C]{\thepage}
+}
+
+% -------------------------  图像宏包  ------------------------- %
+\RequirePackage{graphicx}
+
+% -----------------------  设置标题样式  ----------------------- %
+\ctexset{
+  chapter = {
+    name = {},
+    number = \arabic{chapter}, 
+    format = \raggedright\sffamily\bfseries\zihao{-3},
+    aftername = \hspace{1em},
+    beforeskip = 20pt,
+    afterskip = 15pt,
+  },
+  section = {
+    format = \raggedright\sffamily\bfseries\zihao{4},
+    aftername = \hspace{1em},
+    beforeskip = 12pt,
+    afterskip = 12pt,
+  },
+  subsection = {
+    format = \raggedright\sffamily\bfseries\zihao{-4},
+    aftername = \hspace{1em},
+    beforeskip = 12pt,
+    afterskip = 12pt,
+  }
+}
+
+% -------------------------  目录调节  ------------------------- %
+\RequirePackage{titletoc}
+
+\titlecontents{chapter}
+    [0em]
+    {\vspace{-4pt}\filright\zihao{-4}\rmfamily}
+    {\contentspush{\thecontentslabel\ \ }}
+    {\hspace{0em}}
+    {{\mdseries\hspace{0.4em}\titlerule*[4pt]{.}}\contentspage}
+
+\titlecontents{section}
+    [1.5em]
+    {\vspace{-4pt}\filright\zihao{-4}\rmfamily}
+    {\contentspush{\thecontentslabel\ \ }}
+    {\hspace{0cm}}
+    {{\mdseries\hspace{0.2em}\titlerule*[4pt]{.}}\contentspage}
+
+\titlecontents{subsection}
+    [2.8em]
+    {\vspace{-4pt}\filright\zihao{-4}\rmfamily}
+    {\contentspush{\thecontentslabel\ \ }}
+    {\hspace{0cm}}
+    {{\mdseries\hspace{0.2em}\titlerule*[4pt]{.}}\contentspage}
+
+
+\makeatletter
+\renewcommand{\@pnumwidth}{0.2em{}}
+\makeatother
+\renewcommand\contentsname{\zihao{3}{目\hspace{2em}录}}
+
+\makeatletter
+\let\nbu@tableofcontents\tableofcontents
+\renewcommand{\tableofcontents}{
+    \begingroup
+    \ctexset{chapter={format=\centering\sffamily\bfseries\zihao{3},beforeskip=-0.9\baselineskip}}
+    \nbu@tableofcontents
+    \endgroup
+}
+\makeatother
+
+\newcommand{\introduction}{
+    \begingroup
+    \ctexset{chapter={format=\centering\sffamily\bfseries\zihao{-3},beforeskip=-0.9\baselineskip}}
+    \chapter*{引\hspace{2em}言}
+    \endgroup
+    \chaptermark{引言}
+    \addcontentsline{toc}{chapter}{引\hspace{2em}言}
+}
+
+
+% -------------------------  摘要调节  ------------------------- %
+\RequirePackage{mfirstuc} % 首字母大写
+\newcommand{\tableformatset}{\ctexset{chapter/beforeskip=-0.9\baselineskip}}
+\newcommand{\tableformatreset}{\ctexset{chapter/beforeskip=0.45\baselineskip}}
+\newcounter{countargs}  
+\newcounter{iterateargs} 
+\newcommand{\keywords}[2]{%
+\begingroup
+    \noindent\kwlabel\nobreak\hspace{0.25em}%
+    \setcounter{countargs}{0}%
+    \renewcommand*{\do}[1]{\stepcounter{countargs}}%
+    \docsvlist{#1}%
+    \setcounter{iterateargs}{0}%
+    \renewcommand*{\do}[1]{%
+        \stepcounter{iterateargs}%
+        \printkeyword{##1}%
+        \ifnum\value{iterateargs}<\value{countargs}%
+            \keywordlistsep{#2}%
+        \fi
+    }%
+    \docsvlist{#1}%
+\endgroup
+}
+\newcommand{\kwlabel}{{\kwlabelfmt 关键词}}
+% 关键字标签格式
+\newcommand{\kwlabelfmt}{\sffamily}
+% 关键字格式
+\newcommand{\printkeyword}[1]{\heiti\capitalisewords{#1}}
+% 关键字分隔符
+\newcommand{\keywordlistsep}[1]{#1}
+
+% 中文摘要环境
+
+\newenvironment{abstract}
+{ \clearpage 
+  \begin{center} 
+    {\zihao{3}\heiti \thesistitle \par} \vspace{0.7em} {\zihao{-3}\heiti 摘\hspace{2em}要 \par} 
+  \end{center} \vspace{1em} \rmfamily }
+  { \par }
+
+% 英文摘要环境
+\newenvironment{abstractEN}{
+    \tableformatset
+    \ctexset{chapter={format=\centering\bfseries\zihao{-3},beforeskip=-0.9\baselineskip}}
+    \chapter*{{\zihao{-2}\bfseries \thesistitleEN}\\[0.7em]
+	{\zihao{-3}\bfseries Abstract}}
+
+    \vspace{0.5em}
+    \setlength{\parindent}{1em}
+    \renewcommand{\kwlabel}{{\kwlabelfmt \bfseries \zihao{-4}Key Words:}}
+    \renewcommand{\keywordlistsep}[1]{##1\space}
+    \rmfamily
+}{
+  \par
+  \tableformatreset
+}
+
+% -------------------------  图表格式  ------------------------- %
+% caption标签设置
+\RequirePackage{caption}
+\RequirePackage[labelformat=simple]{subcaption}
+\DeclareCaptionFont{captionfont}{ \fontsize{10.5bp}{14.5bp}\selectfont}
+\captionsetup[figure]{
+  format         = hang,
+  font           = captionfont,
+  labelsep       = quad,
+  aboveskip      = 6pt,
+  belowskip      = -8pt,
+  position = bottom,
+}
+\captionsetup[table]{
+  format         = hang,
+  font           = captionfont,
+  labelsep       = quad,
+  aboveskip      = 4pt,
+  belowskip      = 4pt,
+  position  = top,
+}
+\renewcommand\thefigure{\thechapter.\arabic{figure}}
+\renewcommand\thetable{\thechapter-\arabic{table}}
+\captionsetup[sub]{font=captionfont}
+\renewcommand{\thesubfigure}{(\alph{subfigure})}
+\renewcommand{\thesubtable}{(\alph{subtable})}
+% 浮动体间距设置
+\setlength{\floatsep}{7.5pt}
+% \setlength{\textfloatsep}{-4bp}
+\setlength{\intextsep}{7.5pt}
+\makeatletter
+\renewcommand\normalsize{
+  \@setfontsize\normalsize{12bp}{14.4bp}
+  \abovedisplayskip 3\p@ \@plus1\p@ \@minus1\p@
+  \abovedisplayshortskip 2\p@
+  \belowdisplayshortskip 2\p@
+  \belowdisplayskip \abovedisplayskip}
+\normalsize
+\makeatother
+
+\RequirePackage{multirow}
+\RequirePackage{threeparttable}
+\RequirePackage{booktabs}
+\makeatletter
+\let\tableorig\table
+\def\table@i[#1]{\tableorig[#1]\renewcommand{\arraystretch}{1.5}\zihao{5}}   
+\def\table@ii{\tableorig\renewcommand{\arraystretch}{1.5}\zihao{5}} 
+\def\table{\@ifnextchar[\table@i \table@ii} 
+\makeatother
+
+
+
+% -------------------------  列表格式  ------------------------- %
+\RequirePackage{enumitem}
+\setitemize[1]{leftmargin=3.5em,itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+\setenumerate[1]{leftmargin=3.5em,itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+
+% -------------------------  在学研究成果  ------------------------- %
+\makeatletter
+\newenvironment{achievements}{
+  \ctexset{chapter={format=\raggedright\zihao{-3}\sffamily\bfseries}}
+  \chapter*{在学研究成果}
+  \addcontentsline{toc}{chapter}{在学研究成果}
+}
+{
+  \par
+}
+\makeatother
+
+% -------------------------  致谢环境  ------------------------- %
+\makeatletter
+\newenvironment{acknowledgements}{
+  \ctexset{chapter={format=\centering\zihao{-3}\sffamily\bfseries}}
+  \chapter*{致\hspace{2em}谢}
+  \addcontentsline{toc}{chapter}{致\hspace{2em}谢}
+}
+{
+  \par
+}
+\makeatother
+
+% --------------------------  超环境  -------------------------- %
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{cleveref}
+
+\crefrangeformat{equation}{式~(#3#1#4)\text{--}(#5#2#6)}
