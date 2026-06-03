@@ -1,0 +1,50 @@
+\newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+\newcommand{\studentid}{123456}
+\newcommand{\thesisauthor}{123}
+\newcommand{\thesismajor}{物理学}
+\newcommand{\thesisresearch}{宇宙学暴涨}
+\newcommand{\college}{物理科学与技术学院}
+\newcommand{\supervisor}{234}
+\newcommand{\cosupervisor}{567}
+\newcommand{\submitdate}{2026年06月15日}
+\makebox[1em][s]{\ \hfill}
+
+\vspace{-8pt}
+
+\begin{center}
+    
+    \includegraphics[height=90pt]{./cover/nbu_logo_blue.png}\\    
+    \includegraphics[height=60pt]{./cover/nbu_sign.png}
+    \vspace{25pt}
+
+    {\coverfont\bfseries\fontsize{60pt}{72pt}\selectfont 硕士学位论文}
+
+    \vspace{80pt}
+
+    \begin{spacing}{1.56} 
+        \sffamily  \zihao{-3}  论文题目：\thesistitle
+    \end{spacing}
+    
+    \vspace{70pt}
+
+    {
+        \zihao{-3}
+        \renewcommand\arraystretch{1.1}
+
+        \begin{tabular}{r@{\hspace{0em}}l}
+        \coveritem[6em]{学号：}& \dlmu[12em]{\studentid} \\
+        \coveritem[6em]{姓名：}& \dlmu[12em]{\thesisauthor} \\
+        \coveritem[6em]{专业名称：}& \dlmu[12em]{\thesismajor} \\
+        \coveritem[6em]{研究方向：}& \dlmu[12em]{\thesisresearch} \\
+        \coveritem[6em]{学院：}& \dlmu[12em]{\college} \\
+        \coveritem[6em]{指导教师：}& \dlmu[12em]{\supervisor} \\
+        \coveritem[6em]{协作导师：}& \dlmu[12em]{\cosupervisor} \\
+        \end{tabular}
+    }
+    \vspace{30pt}
+    \begin{spacing}{1.56} 
+        \sffamily  \zihao{-3}  论文提交时间：\submitdate
+    \end{spacing}
+\end{center}
+
+\restoregeometry

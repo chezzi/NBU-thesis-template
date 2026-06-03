@@ -6,11 +6,20 @@
 \newcommand{\thesistitleEN }{English Thesis Title}  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\blankpage}{%
+  \clearpage
+  \thispagestyle{empty}%
+  \null
+  \clearpage
+}%强制加入空白页，但是页码编号+1
+
+
 \begin{document}
 
 % 导入首页
 \pagestyle{titlepage}
-\input{cover/cover_English_version.tex}
+\input{cover/cover_outer.tex}
+\input{cover/cover_inner.tex}
 
 % 前言部分
 \frontmatter
@@ -23,7 +32,8 @@
 \tableformatset
 
 % 导入中英文摘要
-\input{chapter/abstract/abstract.tex}
+\input{chapter/abstract/abstract_Chinese.tex}
+\input{chapter/abstract/abstract_English.tex}
 
 % 导入目录页
 \tableofcontents
@@ -43,7 +53,11 @@
 
 \input{chapter/chapter01/chapter01.tex}
 
-
+\ctexset{
+  chapter={
+    format=\centering\zihao{-3}\bfseries
+  }
+}
 
 \addcontentsline{toc}{chapter}{\bibname}
 \bibliographystyle{style/gbt7714-numerical}
@@ -58,7 +72,8 @@
 
 % 致谢
 \input{acknowledgement/acknowledgements.tex}
-
-
+\clearpage
+\pagestyle{titlepage}
+\input{cover/cover_lastpage.tex}
 
 \end{document}

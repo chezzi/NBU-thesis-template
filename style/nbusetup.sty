@@ -29,6 +29,14 @@
 }
 \makeatother
 
+%------------------ 封面 ----------------------------%
+\newcommand{\coveritem}[2][6em]{%
+    \makebox[#1][s]{#2}
+}
+\newcommand{\dlmu}[2][15em]{%
+  \underline{\makebox[#1][c]{#2}}
+}
+
 % -------------------------  设置版式  ------------------------- %
 \RequirePackage{geometry}
 \RequirePackage{setspace}
@@ -49,6 +57,7 @@
 \newcommand{\fontpath}{./style/font/} 
 \setCJKmainfont[ Path = \fontpath, Extension = .TTF, BoldFont = SourceHanSerifCN-SemiBold.otf ]{FZSSK} 
 \setCJKsansfont[ Path = \fontpath, Extension = .TTF, BoldFont = SourceHanSansCN-Medium.otf ]{FZHTK}
+\newCJKfontfamily\coverfont[Path=\fontpath, Extension = .TTF,AutoFakeBold=2]{STKaiti}
 
 % -----------------------  设置页眉页脚  ----------------------- %
 \RequirePackage{fancyhdr}
@@ -165,7 +174,7 @@
 \newcounter{iterateargs} 
 \newcommand{\keywords}[2]{%
 \begingroup
-    \noindent\kwlabel\nobreak\hspace{0.25em}%
+    \kwlabel\nobreak\hspace{0.25em}%
     \setcounter{countargs}{0}%
     \renewcommand*{\do}[1]{\stepcounter{countargs}}%
     \docsvlist{#1}%
@@ -274,7 +283,7 @@
 % -------------------------  在学研究成果  ------------------------- %
 \makeatletter
 \newenvironment{achievements}{
-  \ctexset{chapter={format=\raggedright\zihao{-3}\sffamily\bfseries}}
+  \ctexset{chapter={format=\centering\zihao{-3}\sffamily\bfseries}}
   \chapter*{在学研究成果}
   \addcontentsline{toc}{chapter}{在学研究成果}
 }
